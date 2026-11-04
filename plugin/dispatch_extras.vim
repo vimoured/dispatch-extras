@@ -5,14 +5,6 @@ if exists('g:loaded_dispatch_extras')
 endif
 let g:loaded_dispatch_extras = 1
 
-" Warns at startup when a required plugin isn't loaded (roumail/vim-requires)
-try
-  call roumail_requires#check('dispatch-extras', {
-        \ 'tpope/vim-dispatch': 'g:loaded_dispatch',
-        \ })
-catch /^Vim\%((\a\+)\)\=:E117:/
-endtry
-
 nnoremap <Plug>(dispatch-extras-log) :tabedit `=dispatch#request().file`<CR>
 nnoremap <Plug>(dispatch-extras-toggle-start-strategy) <Cmd>call dispatch_extras#toggle_start_strategy()<CR>
 nnoremap <Plug>(dispatch-extras-repeat-start) <Cmd>call dispatch_extras#repeat_last_start()<CR>

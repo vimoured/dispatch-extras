@@ -14,11 +14,8 @@ Binds no keys itself; it provides `<Plug>` mappings for your vimrc or other plug
 ## Install
 
 Requires [vim-dispatch](https://github.com/tpope/vim-dispatch).
-With [vim-requires](https://github.com/roumail/vim-requires), Vim shows
-`dispatch-extras: requires …` at startup when one isn't loaded.
 
 ```vim
 Plug 'tpope/vim-dispatch'
-Plug 'roumail/vim-requires'  " optional: the startup warning
 Plug 'roumail/dispatch-extras'
 ```
