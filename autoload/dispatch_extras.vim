@@ -12,11 +12,6 @@ function! dispatch_extras#repeat_last_start() abort
   let last = g:dispatch_last_start
   let command = get(last, 'expanded', '')
 
-  if empty(command)
-    echo "Could not find command in dispatch history"
-    return
-  endif
-
   let opts = {
         \ 'background': get(last, 'background', 1),
         \ 'directory': get(last, 'directory', getcwd()),
