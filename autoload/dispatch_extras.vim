@@ -15,10 +15,15 @@ function! dispatch_extras#repeat_last_start() abort
   let opts = {
         \ 'background': get(last, 'background', 1),
         \ 'directory': get(last, 'directory', getcwd()),
-        \ 'handler': get(last, 'handler', 'terminal')
         \ }
 
-  call dispatch#start(command, opts)
+  let l:handlers = g:dispatch_handlers
+  let g:dispatch_handlers = [get(last, 'handler', 'terminal')]
+  try
+    call dispatch#start(command, opts)
+  finally
+    let g:dispatch_handlers = l:handlers
+  endtry
 endfunction
 
 function! s:last_run() abort

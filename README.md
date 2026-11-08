@@ -29,7 +29,7 @@ nmap <leader>cs <Plug>(dispatch-extras-toggle-start-strategy)
 | Mapping | What it does |
 | --- | --- |
 | `<Plug>(dispatch-extras-repeat-dispatch)` | Open the quickfix window and repeat the last `:Dispatch`. |
-| `<Plug>(dispatch-extras-repeat-start)` | Repeat the last `:Start`. |
+| `<Plug>(dispatch-extras-repeat-start)` | Repeat the last `:Start`, where it ran. |
 | `<Plug>(dispatch-extras-log)` | Open the output of the last `:Dispatch` in a new tab. |
 | `<Plug>(dispatch-extras-toggle-start-strategy)` | Switch `:Start` between a terminal and tmux, and say which. |
 
