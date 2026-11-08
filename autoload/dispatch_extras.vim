@@ -1,6 +1,6 @@
 function! dispatch_extras#toggle_start_strategy() abort
   let g:dispatch_no_tmux_start = !get(g:, 'dispatch_no_tmux_start', 0)
-  echo 'Default Start startegy set to terminal: ' . (g:dispatch_no_tmux_start ? 'on' : 'off')
+  echo 'Default Start strategy set to terminal: ' . (g:dispatch_no_tmux_start ? 'on' : 'off')
 endfunction
 
 function! dispatch_extras#repeat_last_start() abort
@@ -19,4 +19,27 @@ function! dispatch_extras#repeat_last_start() abort
         \ }
 
   call dispatch#start(command, opts)
+endfunction
+
+function! s:last_run() abort
+  let l:run = dispatch#request()
+  if empty(l:run)
+    echo 'No previous dispatch run'
+  endif
+  return l:run
+endfunction
+
+function! dispatch_extras#log() abort
+  let l:run = s:last_run()
+  if !empty(l:run)
+    execute 'tabedit' fnameescape(l:run.file)
+  endif
+endfunction
+
+" https://github.com/tpope/vim-dispatch/issues/80#issuecomment-290958499
+function! dispatch_extras#repeat_dispatch() abort
+  if !empty(s:last_run())
+    Copen
+    Dispatch
+  endif
 endfunction

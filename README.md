@@ -1,31 +1,39 @@
 # dispatch-extras
 
-Small helpers on top of [vim-dispatch](https://github.com/tpope/vim-dispatch),
-as `<Plug>` mappings for your vimrc or other plugins (such as
-[pytest.vim](https://github.com/roumail/pytest.vim)) to bind.
+Repeat the last [vim-dispatch](https://github.com/tpope/vim-dispatch) run, open
+its log, and switch `:Start` between a terminal and tmux.
 
-| Mapping | Action |
-| --- | --- |
-| `<Plug>(dispatch-extras-repeat-start)` | Repeat the last `:Start`. Before any, says `No previous dispatch command to repeat`. |
-| `<Plug>(dispatch-extras-repeat-dispatch)` | `:Copen` and repeat the last `:Dispatch`. Before any, says so and runs nothing (*not yet*: it starts `b:dispatch` or `:Make`). |
-| `<Plug>(dispatch-extras-toggle-start-strategy)` | Toggle `:Start` between terminal and tmux, saying `Default Start strategy set to terminal: on` or `off` (*not yet*: spelled "startegy"). |
-| `<Plug>(dispatch-extras-log)` | Open the output of the last dispatch run in a new tab. Before any, says so and opens nothing (*not yet*: it raises an error). |
-
-*Not yet* marks a known bug: [vim-suite](https://github.com/vimoured/vim-suite)
-asserts the behaviour described (its `test/known-failures.txt`), and the note
-goes once it's fixed.
+**Vim or Neovim:** tested on Vim 9.1 and newer. It's plain Vimscript, so it may
+work on Neovim, but that's untested.
 
 ## Install
 
-Requires [vim-dispatch](https://github.com/tpope/vim-dispatch).
+Needs [vim-dispatch](https://github.com/tpope/vim-dispatch).
 
 ```vim
 Plug 'tpope/vim-dispatch'
 Plug 'vimoured/dispatch-extras'
 ```
 
+## Use
+
+The plugin gives you `<Plug>` mappings to bind:
+
+```vim
+nmap <leader>rd <Plug>(dispatch-extras-repeat-dispatch)
+nmap <leader>rs <Plug>(dispatch-extras-repeat-start)
+nmap <leader>dl <Plug>(dispatch-extras-log)
+nmap <leader>cs <Plug>(dispatch-extras-toggle-start-strategy)
+```
+
+| Mapping | What it does |
+| --- | --- |
+| `<Plug>(dispatch-extras-repeat-dispatch)` | Open the quickfix window and repeat the last `:Dispatch`. |
+| `<Plug>(dispatch-extras-repeat-start)` | Repeat the last `:Start`. |
+| `<Plug>(dispatch-extras-log)` | Open the output of the last `:Dispatch` in a new tab. |
+| `<Plug>(dispatch-extras-toggle-start-strategy)` | Switch `:Start` between a terminal and tmux, and say which. |
+
 ## Tests
 
-Tested by [vim-suite](https://github.com/vimoured/vim-suite), in
-`test/dispatch-extras.vim` and `test/dispatch-extras-before-any-run.vim`, with
-the dotfiles that use it. Every pull request runs them.
+The specs in [vim-suite](https://github.com/vimoured/vim-suite) define what it
+does: `test/dispatch-extras.vim` and `test/dispatch-extras-before-any-run.vim`.
